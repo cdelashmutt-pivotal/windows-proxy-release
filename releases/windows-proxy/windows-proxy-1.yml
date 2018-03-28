@@ -1,0 +1,9 @@
+name: windows-proxy
+version: "1"
+commit_hash: b3b525a
+uncommitted_changes: false
+jobs:
+- name: set-proxy
+  version: 561385691954139006bc2ab15266eac698ac435e
+  fingerprint: 561385691954139006bc2ab15266eac698ac435e
+  sha1: a6e1a283b1b4a288007eb879550a0e1a7df13f30
