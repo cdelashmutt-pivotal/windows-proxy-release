@@ -1,0 +1,20 @@
+---
+name: set-proxy
+description: "Sets proxies for Windows machines"
+
+templates:
+  pre-start.ps1: bin/pre-start.ps1
+  proxy-routines.ps1: bin/proxy-routines.ps1
+
+packages: []
+
+properties:
+  set-proxy.enabled:
+    description: "If false this job will clear proxy settings"
+    default: false
+  set-proxy.proxy-url:
+    description: "The proxy server URL with scheme, hostname/IP and port in the form scheme://hostname:port"
+    default: ""
+  set-proxy.bypass-list:
+    description: "The semicolon separated list of hosts/IPs to bypass the proxy for"
+    default: "*.local;<local>"

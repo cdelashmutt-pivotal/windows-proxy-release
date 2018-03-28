@@ -1,0 +1,18 @@
+---
+releases:
+- name: windows-proxy
+  version: 0+dev.24
+
+addons:
+  - name: windows-proxy-addon
+    jobs:
+      - name: set-proxy
+        release: windows-proxy
+        properties:
+          set-proxy:
+            enabled: true
+            proxy-url: http://192.168.0.211:8080
+            bypass-list: "*.home;*.local;<local>"
+    include:
+      stemcell:
+      - os: windows2012R2
