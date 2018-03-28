@@ -5,6 +5,8 @@ description: "Sets proxies for Windows machines"
 templates:
   pre-start.ps1: bin/pre-start.ps1
   proxy-routines.ps1: bin/proxy-routines.ps1
+  drain.ps1: bin/drain.ps1
+  disable-proxy.ps1: bin/disable-proxy.ps1
 
 packages: []
 

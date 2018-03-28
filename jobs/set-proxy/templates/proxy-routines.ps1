@@ -324,3 +324,41 @@ namespace SetProxy
 '@
 
 Add-Type -TypeDefinition $signature
+
+function Test-RegistryValue {
+  param (
+    [parameter(Mandatory=$true)]
+    [ValidateNotNullOrEmpty()]$Path,
+
+    [parameter(Mandatory=$true)]
+    [ValidateNotNullOrEmpty()]$Value
+  )
+
+  try {
+    Get-ItemProperty -Path $Path | Select-Object -ExpandProperty $Value -ErrorAction Stop | Out-Null
+    return $true
+  }
+  catch {
+    return $false
+  }
+}
+
+function Upsert-RegistryValue {
+  param (
+    [parameter(Mandatory=$true)]
+    [string]$Path,
+    [parameter(Mandatory=$true)]
+    [string]$Name,
+    [parameter(Mandatory=$true)]
+    $Value
+  )
+
+  if( (Test-RegistryValue -Path $Path -Value $Name) -eq $true) {
+    "-Updating $(Join-Path $Path $Name) to $Value"
+    Set-ItemProperty -Path $Path -Name $Name -Value $Value
+  }
+  else {
+    "-Creating $(Join-Path $Path $Name) and setting to $Value"
+    New-ItemProperty -Path $Path -Name $Name -Value $Value
+  }
+}
